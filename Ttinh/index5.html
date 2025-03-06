@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Em Muốn Uống Gì?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            color: #3f51b5;
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .drink-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .drink-item {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .drink-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .drink-item:hover::before {
+            opacity: 1;
+        }
+
+        .drink-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .drink-item .drink-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 0;
+            font-size: 12px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .drink-item:hover .drink-name {
+            transform: translateY(0);
+        }
+
+        #selectedDrink {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #3f51b5;
+            font-weight: bold;
+        }
+
+        .btn-next {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #3f51b5;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(63, 81, 181, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-next:hover {
+            background-color: #303f9f;
+            box-shadow: 0 7px 20px rgba(63, 81, 181, 0.5);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">Em Muốn Uống Gì?</div>
+        <div class="drink-carousel" id="drinkCarousel"></div>
+        <div id="selectedDrink"></div>
+        <div id="nextButtonContainer" style="display: none; margin-top: 15px;">
+            <button class="btn-next" onclick="goToNextPage()">Tiếp</button>
+        </div>
+    </div>
+
+    <script>
+        const drinks = [
+            { name: 'Trà Sữa', image: 'https://i.pinimg.com/736x/87/2a/09/872a0953896df1c6e757fd54b845da23.jpg' },
+            { name: 'Cafe Sữa Đá', image: 'https://i.pinimg.com/736x/1f/c8/72/1fc872840630055919672fce03723af9.jpg' },
+            { name: 'Nước Ép Cam', image: 'https://i.pinimg.com/736x/3b/5c/fc/3b5cfc41457081509f53f280020e6cd9.jpg' },
+            { name: 'Sinh Tố Bơ', image: 'https://i.pinimg.com/736x/3b/5c/fc/3b5cfc41457081509f53f280020e6cd9.jpg' },
+            { name: 'Nước Dừa', image: 'https://i.pinimg.com/736x/f7/46/76/f74676e64d0ccd46daf08d419c0fbe5d.jpg' },
+            { name: 'Trà Chanh', image: 'https://i.pinimg.com/736x/c6/4d/26/c64d26e91c7c1a09916bcc3223da561b.jpg' },
+            { name: 'Uống Gì Cũng Được', image: 'https://i.pinimg.com/736x/6f/36/c8/6f36c874861a46b8e4208454157a1d6b.jpg' }
+        ];
+
+        const drinkCarousel = document.getElementById('drinkCarousel');
+        const selectedDrinkDiv = document.getElementById('selectedDrink');
+        const nextButtonContainer = document.getElementById('nextButtonContainer');
+
+        drinks.forEach(drink => {
+            const drinkItem = document.createElement('div');
+            drinkItem.classList.add('drink-item');
+
+            const img = document.createElement('img');
+            img.src = drink.image;
+            img.alt = drink.name;
+
+            const drinkName = document.createElement('div');
+            drinkName.classList.add('drink-name');
+            drinkName.textContent = drink.name;
+
+            drinkItem.appendChild(img);
+            drinkItem.appendChild(drinkName);
+
+            drinkItem.addEventListener('click', () => {
+                if (drink.name === 'Uống Gì Cũng Được') {
+                    selectedDrinkDiv.textContent = 'Cho em chọn nhé :33 ';
+                    setTimeout(() => {
+                        alert('Uống anh nè ');
+                    }, 300);
+                } else {
+                    selectedDrinkDiv.textContent = `Bạn chọn: ${drink.name}`;
+                    setTimeout(() => {
+                        alert(`Một ly ${drink.name} tuyệt vời sắp được phục vụ! ️`);
+                    }, 300);
+                }
+                nextButtonContainer.style.display = 'block';
+            });
+
+            drinkCarousel.appendChild(drinkItem);
+        });
+        function goToNextPage() {
+            window.location.href = 'index6.html';
+        }
+    </script>
+</body>
+
+</html>

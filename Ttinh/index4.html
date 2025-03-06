@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Em Muốn Ăn Món Gì?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            color: #ff5d8f;
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .food-item {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .food-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .food-item:hover::before {
+            opacity: 1;
+        }
+
+        .food-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .food-item .food-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 0;
+            font-size: 12px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .food-item:hover .food-name {
+            transform: translateY(0);
+        }
+
+        #selectedFood {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #ff5d8f;
+            font-weight: bold;
+        }
+
+        .btn-next {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff5d8f;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(255, 93, 143, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-next:hover {
+            background-color: #e65282;
+            box-shadow: 0 7px 20px rgba(255, 93, 143, 0.5);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">Em Muốn Ăn Món Gì?</div>
+        <div class="food-carousel" id="foodCarousel"></div>
+        <div id="selectedFood"></div>
+        <div id="nextButtonContainer" style="display: none; margin-top: 15px;">
+            <button class="btn-next" onclick="goToNextPage()">Tiếp</button>
+        </div>
+    </div>
+
+    <script>
+        const foods = [
+            { name: 'Cơm', image: 'https://i.pinimg.com/736x/ac/f2/14/acf21487e6638097f8e8922b153c1ffa.jpg' },
+            { name: 'Bún Bò', image: 'https://i.pinimg.com/736x/f4/41/e4/f441e4d163c5cc83ce64f29098ad34fa.jpg' },
+            { name: 'Phở Cuốn', image: 'https://i.pinimg.com/736x/6e/06/fe/6e06fe0a41b99505ebd6eec9175251f8.jpg' },
+            { name: 'Nem Nướng', image: 'https://i.pinimg.com/736x/dc/c9/c2/dcc9c227c62d5146b7f4785d5788dc35.jpg' },
+            { name: 'Bún Cá', image: 'https://i.pinimg.com/736x/36/c6/76/36c6762548dbe8c3323725d0322e8fcf.jpg' },
+            { name: 'Mì Cay', image: 'https://i.pinimg.com/736x/4e/a7/c2/4ea7c29e0afdbed1ac53d914a617a7fc.jpg' },
+            { name: 'Ăn Gì Cũng Được', image: 'https://i.pinimg.com/736x/15/c5/36/15c536783014eb6fa4bbc953021b3eb6.jpg' }
+        ];
+
+        const foodCarousel = document.getElementById('foodCarousel');
+        const selectedFoodDiv = document.getElementById('selectedFood');
+        const nextButtonContainer = document.getElementById('nextButtonContainer');
+
+        foods.forEach(food => {
+            const foodItem = document.createElement('div');
+            foodItem.classList.add('food-item');
+
+            const img = document.createElement('img');
+            img.src = food.image;
+            img.alt = food.name;
+
+            const foodName = document.createElement('div');
+            foodName.classList.add('food-name');
+            foodName.textContent = food.name;
+
+            foodItem.appendChild(img);
+            foodItem.appendChild(foodName);
+
+            foodItem.addEventListener('click', () => {
+                if (food.name === 'Ăn Gì Cũng Được') {
+                    selectedFoodDiv.textContent = 'Ăn gì cho em tự chọn nha. Không nữa thì ăn a nè 🤣 ';
+                    setTimeout(() => {
+                        alert('Ăn anh nè ');
+                    }, 300);
+                } else {
+                    selectedFoodDiv.textContent = `Bạn chọn: ${food.name}`;
+                    setTimeout(() => {
+                        alert(`Một ${food.name} tuyệt vời sắp được phục vụ! ️`);
+                    }, 300);
+                }
+                nextButtonContainer.style.display = 'block';
+            });
+
+            foodCarousel.appendChild(foodItem);
+        });
+
+        function goToNextPage() {
+            window.location.href = 'index5.html';
+        }
+    </script>
+</body>

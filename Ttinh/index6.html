@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Xong Em Muốn Đi Chơi Đâu Nữa Nè?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .title {
+            color: #d35400;
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .place-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .place-item {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .place-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .place-item:hover::before {
+            opacity: 1;
+        }
+
+        .place-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .place-item .place-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 0;
+            font-size: 12px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .place-item:hover .place-name {
+            transform: translateY(0);
+        }
+
+        #selectedPlace {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #d35400;
+            font-weight: bold;
+        }
+
+        .btn-next {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #d35400;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(211, 84, 0, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-next:hover {
+            background-color: #c24d00;
+            box-shadow: 0 7px 20px rgba(211, 84, 0, 0.5);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">Xong em muốn đi chơi đâu nữa nè?</div>
+        <div class="place-carousel" id="placeCarousel"></div>
+        <div id="selectedPlace"></div>
+        <div id="nextButtonContainer" style="display: none; margin-top: 15px;">
+            <button class="btn-next" onclick="goToNextPage()">Tiếp</button>
+        </div>
+    </div>
+
+    <script>
+        const places = [
+            { name: 'Công Viên', image: 'https://i.pinimg.com/736x/c9/64/58/c9645891fc4c84d400a93c00c8dc42a2.jpg' },
+            { name: 'Rạp Phim', image: 'https://i.pinimg.com/736x/1f/5e/cc/1f5ecca4b80819393a320a95d14c51d0.jpg' },
+            { name: 'Quán Cafe', image: 'https://i.pinimg.com/736x/c7/b8/fc/c7b8fcfc09f0c709458ba1e657405c15.jpg' },
+            { name: 'Nhà Ma', image: 'https://dulich9.com/wp-content/uploads/2024/01/Dia-chi-cac-nha-ma-o-Ha-Noi-03.webp' },
+            { name: 'Dạo Quanh VNUA', image: 'http://www.vnua.edu.vn/DATA/0/IMAGES/2017/07/hocvien/2017-2707hocvien004.JPG' },
+            { name: 'Nơi Có Chúng Ta', image: 'https://i.pinimg.com/736x/b6/08/3c/b6083cc8a66ab145ec71efce64ad96b2.jpg' }
+        ];
+
+        const placeCarousel = document.getElementById('placeCarousel');
+        const selectedPlaceDiv = document.getElementById('selectedPlace');
+        const nextButtonContainer = document.getElementById('nextButtonContainer');
+
+        places.forEach(place => {
+            const placeItem = document.createElement('div');
+            placeItem.classList.add('place-item');
+
+            const img = document.createElement('img');
+            img.src = place.image;
+            img.alt = place.name;
+
+            const placeName = document.createElement('div');
+            placeName.classList.add('place-name');
+            placeName.textContent = place.name;
+
+            placeItem.appendChild(img);
+            placeItem.appendChild(placeName);
+
+            placeItem.addEventListener('click', () => {
+                if (place.name === 'Nơi Có Chúng Ta') {
+                    selectedPlaceDiv.textContent = 'Đi Đâu Miễn Đi Cùng Em Là Được 🥰';
+                    setTimeout(() => {
+                        alert('Đi Đâu Miễn Đi Cùng Em Là Được🥰');
+                    }, 300);
+                } else {
+                    selectedPlaceDiv.textContent = `Đi ${place.name} nhé!`;
+                    setTimeout(() => {
+                        alert(`Một buổi đi ${place.name} thật tuyệt vời nhé!`);
+                    }, 300);
+                }
+                nextButtonContainer.style.display = 'block';
+            });
+
+            placeCarousel.appendChild(placeItem);
+        });
+
+        function goToNextPage() {
+            window.location.href = 'index7.html';
+        }
+    </script>
+</body>
+
+</html>

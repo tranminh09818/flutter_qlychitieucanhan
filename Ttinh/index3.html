@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chọn Ngày Hẹn Hò</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            text-align: center;
+        }
+        .container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        .title {
+            color: #ff6b9e;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        #datepicker {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #ff6b9e;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        .btn-submit {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        .btn-cancel {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff6b9e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            Em rành vào hôm nào...
+            <br>Ngày nào: (chọn 1 ngày nừ)<br/>
+        </div>
+        <input type="date" id="datepicker">
+        <div>
+            <button class="btn btn-submit" onclick="selectDate()">Chọn</button>
+            <button class="btn btn-cancel" onclick="cancel()">Hủy</button>
+        </div>
+        <div id="result" class="result"></div>
+        <div id="nextButtonContainer" style="display: none; margin-top: 20px;">
+            <button class="btn btn-submit" onclick="goToNextPage()">Tiếp</button>
+        </div>
+    </div>
+
+    <script>
+        function selectDate() {
+            const datepicker = document.getElementById('datepicker');
+            const result = document.getElementById('result');
+            const nextButtonContainer = document.getElementById('nextButtonContainer');
+
+            if (datepicker.value) {
+                const selectedDate = new Date(datepicker.value);
+                const formattedDate = selectedDate.toLocaleDateString('vi-VN', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                result.innerHTML = `Bạn chọn ngày: ${formattedDate}`;
+                nextButtonContainer.style.display = 'block';
+
+                setTimeout(() => {
+                    alert('Một buổi hẹn tuyệt vời sẽ đến! 💕');
+                }, 500);
+            } else {
+                result.innerHTML = 'Vui lòng chọn ngày';
+                nextButtonContainer.style.display = 'none';
+            }
+        }
+
+        function cancel() {
+            document.getElementById('datepicker').value = '';
+            document.getElementById('result').innerHTML = 'Đã hủy chọn ngày';
+            document.getElementById('nextButtonContainer').style.display = 'none';
+        }
+
+        function goToNextPage() {
+            window.location.href = 'index4.html';
+        }
+    </script>
+</body>
+</html>
