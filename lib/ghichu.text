@@ -1,0 +1,46 @@
+Phát triển ứng dụng Mobile
+App: quản lý chi tiêu cá nhân
+Thành viên nhóm 1: 
+-671688 Trần Hoàng Minh(c)
+-671180 Nguyễn Đức Anh
+-671413 Liễu Thu Hiền
+-671318 Nguyễn Tiến Dũng
+Mô tả ứng dụng cho từng bạn làm(UI) :
+Giao diện chính:
+AppBar: Quản lý chi tiêu
+Body: 
++ Chức năng tìm kiếm : Icon tìm kiếm+ text" tìm kiếm"+ |danh mục tìm kiếm"Tất cả', 'Ăn uống', 'Di chuyển', 'Nhà cửa', 'Giải trí', 'Khác"|
+tìm kiếm theo từ khóa ( gõ từ khóa vào ô tìm kiếm vidu: a hiện ra danh sách những từ bắt đầu bằng a)
+tìm kiếm theo danh mục( chọn vào danh mục nào hiện thị giao dịch theo danh mục đó)
+
++ Tổng tiển: Tổng cộng + |tổng số tiền "mặc định là: 0đ"+ icon làm lại"  quay tròn+ iocn xóa " xóa tất cả"|
+số tiền sẽ được cộng dần từ các giao dịch đã thêm vào " chưa có giao dịch nào thì hiện 0đ"
+khi bấm vào icon làm lại thì  sẽ hiện ra bảng thông báo hỏi có chắc chắn muốn làm lại không"bạn có chắc chắn muốn làm lại không";
+if người dùng chọn có thì tổng tiền sẽ về 0đ và in ra text" tổng tiền đã được làm lại về 0đ"
+if người dùng chọn không thì tổng tiền vẫn giữ nguyên
+
+khi bấm vào icon xóa thì sẽ hiện ra bảng thông báo hỏi có chắc chắn muốn xóa tất cả không"bạn có chắc chắn muốn xóa tất cả không";
+if người dùng chọn có thì tổng tiền sẽ về 0đ và in ra text" tất cả giao dịch đã được xóa"
+if người dùng chọn không thì tổng tiền vẫn giữ nguyên
++ Khoảng chống khi chưa có giao dịch nào: text"chưa có giao dịch"; 
+if có giao dịch thì hiện thị danh sách các giao dịch đã thêm vào theo dạng card
+Mỗi giao dịch sẽ hiện thị: VD
+Tên giao dịch: ăn mì;| số tiền:50.000 đ + icon sửa + icon xóa |
+Danh mục: Ăn uống * Ngày: 20/06/2024
+( icon sửa: khi bấm vào sẽ hiện ra bảng sửa giao dịch)
+( icon xóa: khi bấm vào sẽ hiện ra bảng hỏi có chắc chắn muốn xóa giao dịch không"bạn có chắc chắn muốn xóa giao dịch không");
+if người dùng chọn có thì giao dịch sẽ bị xóa và tổng tiền sẽ được cập nhật lại
+if người dùng chọn không thì giao dịch vẫn giữ nguyên
+
++ Nút thêm giao dịch mới( dấu + góc cùng bên phải )
+hiện ra bảng thêm giao dịch mới(ở dưới cùng chui lên)
+-tiêu đề: ....... ăn mì
+- số tiền: ....... 50.000 đ
+tự động thêm .đơn vị đằng sau số tiền
+if người dùng không nhập gì mà bấm nút thêm thì hiện ra bảng thông báo" vui lòng nhập số tiền"
+- danh mục: |........|  chọn danh mục từ danh sách ( ăn uống, di chuyển, nhà cửa, giải trí, khác) & ngày:08/10/2004
+      nút lưu ( bên dưới ở giữa)
+if người dùng bấm nút lưu thì giao dịch sẽ được thêm vào danh sách giao dịch và tổng tiền sẽ được cập nhật lại
+if người dùng bấm nút hủy thì bảng thêm giao dịch sẽ biến mất
+if người dùng nhấn vào chỉnh sửa nó cũng ra bảng này chỉ khác là thay nút "lưu" bằng "cập nhật"
+( |........|  đặt cuối bên phải)
