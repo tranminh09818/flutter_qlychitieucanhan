@@ -1,10 +1,16 @@
 Phát triển ứng dụng Mobile
-App: quản lý chi tiêu cá nhân
+App: quản lý chi tiêu cá nhân  | https://github.com/tranminh09818/flutter_qlychitieucanhan.git
 Thành viên nhóm 1: 
 -671688 Trần Hoàng Minh(c)
 -671180 Nguyễn Đức Anh
 -671413 Liễu Thu Hiền
 -671318 Nguyễn Tiến Dũng
+=============================================
+! CÁC CÂU LỆNH GIT LƯU Ý: nhập theo thứ tự từng cái 1 
+git add .                                       (thêm tất cả các file đã thay đổi vào vùng staging)
+git commit -m "mô tả thay đổi"                  (lưu các thay đổi vào kho lưu trữ cục bộ với mô tả)
+git push                                        (đẩy các thay đổi từ kho lưu trữ cục bộ lên kho lưu trữ từ xa trên GitHub)
+=============================================
 Mô tả ứng dụng cho từng bạn làm(UI) :
 Giao diện chính:
 AppBar: Quản lý chi tiêu
@@ -44,3 +50,51 @@ if người dùng bấm nút lưu thì giao dịch sẽ được thêm vào danh
 if người dùng bấm nút hủy thì bảng thêm giao dịch sẽ biến mất
 if người dùng nhấn vào chỉnh sửa nó cũng ra bảng này chỉ khác là thay nút "lưu" bằng "cập nhật"
 ( |........|  đặt cuối bên phải)
+
+------------------------------------
+Scaffold (Khung màn hình )
+│
+├── AppBar (Thanh tiêu đề trên cùng)
+│    └── Text: "Quản lý chi tiêu"
+│
+├── Body (Phần thân chính - Dùng Column để xếp dọc từ trên xuống)
+│    │
+│    ├── Container/Card (Khu vực 1: TÌM KIẾM & LỌC - HIỀN làm)
+│    │    └── Column
+│    │         ├── Row (Ô tìm kiếm: Icon kính lúp + TextField)
+│    │         └── ListView ngang (Các nút lọc: Tất cả, Ăn uống, Di chuyển...)
+│    │
+│    ├── Card (Khu vực 2: TỔNG TIỀN - HIỀN làm)
+│    │    └── Column
+│    │         ├── Text: "Tổng cộng"
+│    │         ├── Text: "5.000.000đ" (Biến động theo dữ liệu)
+│    │         └── Row (2 nút chức năng)
+│    │              ├── IconButton (Nút Reset - hiện Dialog hỏi)
+│    │              └── IconButton (Nút Xóa tất cả - hiện Dialog hỏi)
+│    │
+│    └── Expanded (Khu vực 3: DANH SÁCH GIAO DỊCH - DŨNG làm hiển thị & Logic xóa/sửa)
+│         └── ListView.builder (Danh sách cuộn)
+│              ├── Trường hợp rỗng: Text "Chưa có giao dịch"
+│              └── Trường hợp có tin:
+│                   └── TransactionItem (Widget tạch riêng)
+│                        └── Card
+│                             └── ListTile
+│                                  ├── Leading: CircleAvatar (Hiển thị số tiền rút gọn)
+│                                  ├── Title: Tên giao dịch ("Ăn mì")
+│                                  ├── Subtitle: Danh mục + Ngày
+│                                  └── Trailing: Row (2 nút)
+│                                       ├── Icon Edit (Bấm vào hiện bảng sửa của Dũng)
+│                                       └── Icon Delete (Bấm vào hiện Dialog xóa)
+│
+└── FloatingActionButton (Nút tròn góc phải dưới - t làm)
+     └── Icon: Dấu cộng (+)
+     └── onPressed: Gọi hàm showModalBottomSheet (Hiện bảng nhập liệu từ dưới lên)
+=============================================
+=============================================
+CHI TIẾT CÔNG VIỆC THEO TỪNG THÀNH VIÊN:
+Đ ANH: Thiết kế DB & khung app
+MINH: Setup  & thêm chức năng giao dịch mới (Validate dữ liệu tền tệ, chọn ngày )& lưu( gọi hàm insert vào DB) 
+DŨNG: Xem chi tiết & chỉnh sửa dao dịch( cập nhật số tiền/ghi chú/danh mục/ngày) & xóa giao dịch
+HIỀN: Tìm kiếm & lọc danh mục & tổng tiền & xóa tất cả 
+( AI LÀM PHẦN NÀO TỰ THÊM UI VÀO PHẦN ĐÓ THEO MÔ TẢ Ở TRÊN, CÓ THỂ LÀM THEO MẪU T GỬI TRÊN ZALO)
+
