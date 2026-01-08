@@ -7,8 +7,8 @@ void main() {
     home: Home () // -> bên trang home.dart
   ));
 }
-class MyWidget extends StatelessWidget { // dùng sau nếu cần 
-  const MyWidget({super.key});
+class SandBox extends StatelessWidget { // dùng sau nếu cần 
+  const SandBox({super.key});
 
   @override
   Widget build(BuildContext context) {

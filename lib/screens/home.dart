@@ -10,6 +10,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  get child => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,17 +21,17 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         backgroundColor: AppColors.primaryColor,
       ),
-      body: const Center(  // phần của ai tự code ( cmt  tách phần của mk viết ra ) 
-        child: Text('chưa có giao dịch nào'),
+      body: Column(  // phần của ai tự code ( cmt tên, tách phần của mk viết ra ) 
+        children: [
+          Container()
+        
+        ],
+
+
+
+
+
       ),
-
-
-
-
-
-
-
-      
       //nút bấm thêm giao dịch
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -41,4 +43,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+class Expended {
 }
