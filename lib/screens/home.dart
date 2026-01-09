@@ -10,15 +10,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  get child => null;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar (
         title: const Text('Quán lý chi tiêu',
-        style:TextStyle(fontWeight: FontWeight.bold)),
-        centerTitle: true,
+        style:TextStyle(fontWeight: FontWeight.bold) // in đậm 
+        ),
+        centerTitle: true, 
         backgroundColor: AppColors.primaryColor,
       ),
       body: Column(  // phần của ai tự code ( cmt tên, tách phần của mk viết ra ) 
@@ -36,14 +35,11 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Chuyển sang trang thêm giao dịch khi nút được nhấn
-          Navigator.pushNamed(context, '/add-transaction');
+          Navigator.pushNamed(context, '/add-transaction'); 
         },
         backgroundColor: AppColors.primaryAccent,
         child: const Icon(Icons.add),
       ),
     );
   }
-}
-
-class Expended {
 }

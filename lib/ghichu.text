@@ -6,10 +6,11 @@ Thành viên nhóm 1:
 -671413 Liễu Thu Hiền
 -671318 Nguyễn Tiến Dũng
 =============================================
-! CÁC CÂU LỆNH GIT LƯU Ý: nhập theo thứ tự từng cái 1 
+! CÁC CÂU LỆNH GIT LƯU Ý: nhập theo thứ tự từng cái 1 ( trước khi code xong phải ctrl S để lưu lại )
 git add .                                       (thêm tất cả các file đã thay đổi vào vùng staging)
 git commit -m "mô tả thay đổi"                  (lưu các thay đổi vào kho lưu trữ cục bộ với mô tả)
 git push                                        (đẩy các thay đổi từ kho lưu trữ cục bộ lên kho lưu trữ từ xa trên GitHub)
+git pull                                        (lấy các thay đổi mới nhất từ kho lưu trữ từ github về kho lưu trữ cục máy)
 =============================================
 Mô tả ứng dụng cho từng bạn làm(UI) :
 Giao diện chính:
@@ -97,4 +98,3 @@ MINH: Setup  & thêm chức năng giao dịch mới (Validate dữ liệu tền 
 DŨNG: Xem chi tiết & chỉnh sửa dao dịch( cập nhật số tiền/ghi chú/danh mục/ngày) & xóa giao dịch
 HIỀN: Tìm kiếm & lọc danh mục & tổng tiền & xóa tất cả 
 ( AI LÀM PHẦN NÀO TỰ THÊM UI VÀO PHẦN ĐÓ THEO MÔ TẢ Ở TRÊN, CÓ THỂ LÀM THEO MẪU T GỬI TRÊN ZALO)
- t là tk đức anh đây 
