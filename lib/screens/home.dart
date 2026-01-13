@@ -71,8 +71,8 @@ class _HomeState extends State<Home> {
                         trailing: Text(
                           '${transaction.amount.toStringAsFixed(2)} VND',
                         ),
-                        onTap: () {
-                          Navigator.push(
+                        onTap: () async {
+                         final result = await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => TransactionDetailScreen(
@@ -80,6 +80,9 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           );
+                          if (result == 'deleted') {
+                            _loadTransactions();
+                          }
                         },
                       );
                     },
