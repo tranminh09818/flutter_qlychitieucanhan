@@ -13,6 +13,35 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<TransactionModel> _transactions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTransactions();
+  }
+
+  Future<void> _loadTransactions() async {
+    final dbService = DatabaseService();
+    final db = await dbService.database;
+    final List<Map<String, dynamic>> maps = await db.query('transactions');
+
+    setState(() {
+      _transactions = maps
+          .map(
+            (map) => TransactionModel(
+              id: map['id'],
+              title: map['title'],
+              amount: map['amount'],
+              date: DateTime.parse(map['date']),
+              category:
+                  map['category'] ??
+                  'Khác', // Default to 'Khác' if category is null
+            ),
+          )
+          .toList();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +54,40 @@ class _HomeState extends State<Home> {
       ),
       body: Column(  // phần của ai tự code ( cmt tên, tách phần của mk viết ra ) 
         children: [
-          Container()
+          Expanded( // Dũng
+            child: _transactions.isEmpty
+                ? Center(
+                    child: Text(
+                      'Chưa có giao dịch',
+                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: _transactions.length,
+                    itemBuilder: (context, index) {
+                      final transaction = _transactions[index];
+                      return ListTile(
+                        title: Text(transaction.title),
+                        subtitle: Text(
+                          transaction.date.toLocal().toString().split(' ')[0],
+                        ),
+                        trailing: Text(
+                          '${transaction.amount.toStringAsFixed(2)} VND',
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TransactionDetailScreen(
+                                transaction: transaction,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+          ),
         
         ],
 
@@ -34,6 +96,7 @@ class _HomeState extends State<Home> {
 
 
       ),
+      
       //nút bấm thêm giao dịch
       floatingActionButton: FloatingActionButton(
         onPressed: () {
