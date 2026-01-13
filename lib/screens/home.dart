@@ -10,7 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<TransactionModel> _transactions = [];
   @override
   void initState() {
     super.initState();
