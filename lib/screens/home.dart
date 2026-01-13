@@ -1,6 +1,9 @@
 // trang để chuyển sang thêm giao dịch( kết nối )
 import 'package:flutter/material.dart';
 import 'package:flutter_qlychitieucanhan/theme.dart';
+import '../services/database.dart';
+import '../models/transaction.dart';
+import '../screens/transaction_detail.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
