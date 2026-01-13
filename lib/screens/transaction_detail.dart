@@ -77,9 +77,39 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
               },
               child: Text('Sửa giao dịch'),
             ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              onPressed: () async {
+                final confirm = await showDialog<bool>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Xác nhận xóa'),
+                    content: Text('Bạn có chắc muốn xóa giao dịch này?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, false),
+                        child: Text('Hủy'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, true),
+                        child: Text('Xóa', style: TextStyle(color: Colors.red)),
+                      ),
+                    ],
+                  ),
+                );
+                if (confirm == true) {
+                  if (transaction.id != null) {
+                    await DatabaseService().deleteTransaction(transaction.id!);
+                  }
+                  Navigator.pop(context, 'deleted');
+                }
+              },
+              child: Text('Xóa giao dịch'),
+            ),
           ],
         ),
       ),
     );
   }
 }
+
