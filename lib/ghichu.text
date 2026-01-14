@@ -10,6 +10,7 @@ Thành viên nhóm 1:
 git add .                                       (thêm tất cả các file đã thay đổi vào vùng staging)
 git commit -m "mô tả thay đổi"                  (lưu các thay đổi vào kho lưu trữ cục bộ với mô tả)
 git push                                        (đẩy các thay đổi từ kho lưu trữ cục bộ lên kho lưu trữ từ xa trên GitHub)
+-------
 git pull                                        (lấy các thay đổi mới nhất từ kho lưu trữ từ github về kho lưu trữ cục máy)
 =============================================
 Mô tả ứng dụng cho từng bạn làm(UI) :

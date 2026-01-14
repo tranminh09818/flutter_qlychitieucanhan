@@ -15,6 +15,9 @@ dependencies:
   path: ^1.8.3
   intl: ^0.18.1
   google_fonts: ^6.3.2
+  # Removed incompatible/unused dependencies to allow `flutter pub get`.
+  # If you need local storage for web, add a compatible version of `sembast`/`sembast_web` or
+  # use a web-friendly storage package. Re-add when confirmed.
 
 dev_dependencies:
   flutter_test:
