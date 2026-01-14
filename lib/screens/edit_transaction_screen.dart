@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import '../services/database.dart';
+import '../services/database_service.dart';
 
 class EditTransactionScreen extends StatefulWidget {
   final TransactionModel transaction;
@@ -50,7 +51,8 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
     );
 
     // Gọi Database để lưu xuống bộ nhớ máy
-    final databaseService = DatabaseService();
+    final databaseService = DatabaseService.instance;
+
     databaseService.updateTransaction(updatedTransaction);
 
     // Đóng màn hình và trả dữ liệu mới về màn hình trước

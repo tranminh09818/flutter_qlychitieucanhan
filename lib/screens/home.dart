@@ -4,6 +4,7 @@ import 'package:flutter_qlychitieucanhan/theme.dart';
 import '../services/database.dart';
 import '../models/transaction.dart';
 import '../screens/transaction_detail.dart';
+import '../services/database_service.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,8 +20,10 @@ class _HomeState extends State<Home> {
     super.initState();
     _loadTransactions();
   }
+
   Future<void> _loadTransactions() async {
-    final dbService = DatabaseService();
+    final dbService = DatabaseService.instance;
+
     final db = await dbService.database;
     final List<Map<String, dynamic>> maps = await db.query('transactions');
 
@@ -40,6 +43,7 @@ class _HomeState extends State<Home> {
           .toList();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +79,7 @@ class _HomeState extends State<Home> {
                           '${transaction.amount.toStringAsFixed(2)} VND',
                         ),
                         onTap: () async {
-                         final result = await Navigator.push(
+                          final result = await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => TransactionDetailScreen(

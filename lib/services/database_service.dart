@@ -1,14 +1,15 @@
+// trang database
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 //import 'package:sqflite/sqflite.dart';
 //import 'package:path/path.dart';
 import '../models/transaction.dart';
 
-class DatabaseHelper {
-  static final DatabaseHelper instance = DatabaseHelper._init();
+class DatabaseService {
+  static final DatabaseService instance = DatabaseService._init();
   static Database? _database;
 
-  DatabaseHelper._init();
+  DatabaseService._init();
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -21,6 +22,21 @@ class DatabaseHelper {
     final path = join(dbPath, fileName);
 
     return await openDatabase(path, version: 1, onCreate: _createDB);
+  }
+
+  Future<int> deleteTransaction(int id) async {
+    final db = await database;
+    return await db.delete('transactions', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<int> updateTransaction(TransactionModel transaction) async {
+    final db = await database;
+    return await db.update(
+      'transactions',
+      transaction.toMap(),
+      where: 'id = ?',
+      whereArgs: [transaction.id],
+    );
   }
 
   Future _createDB(Database db, int version) async {

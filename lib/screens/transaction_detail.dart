@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'edit_transaction_screen.dart';
 import '../services/database.dart';
+import '../services/database_service.dart';
 
 class TransactionDetailScreen extends StatefulWidget {
   final TransactionModel
@@ -99,7 +100,9 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                 );
                 if (confirm == true) {
                   if (transaction.id != null) {
-                    await DatabaseService().deleteTransaction(transaction.id!);
+                    await DatabaseService.instance.deleteTransaction(
+                      transaction.id!,
+                    );
                   }
                   Navigator.pop(context, 'deleted');
                 }
@@ -112,4 +115,3 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
     );
   }
 }
-
