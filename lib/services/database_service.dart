@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-// Cross-platform entry point. On web this file exports `database_web.dart`,
-// on IO platforms it exports `database_io.dart` which uses sqflite.
-export 'database_io.dart' if (dart.library.html) 'database_web.dart'; 
- 
-=======
 // trang database
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -11,11 +5,11 @@ import 'package:path/path.dart';
 //import 'package:path/path.dart';
 import '../models/transaction.dart';
 
-class DatabaseHelper {
-  static final DatabaseHelper instance = DatabaseHelper._init();
+class DatabaseService {
+  static final DatabaseService instance = DatabaseService._init();
   static Database? _database;
 
-  DatabaseHelper._init();
+  DatabaseService._init();
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -28,6 +22,21 @@ class DatabaseHelper {
     final path = join(dbPath, fileName);
 
     return await openDatabase(path, version: 1, onCreate: _createDB);
+  }
+
+  Future<int> deleteTransaction(int id) async {
+    final db = await database;
+    return await db.delete('transactions', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<int> updateTransaction(TransactionModel transaction) async {
+    final db = await database;
+    return await db.update(
+      'transactions',
+      transaction.toMap(),
+      where: 'id = ?',
+      whereArgs: [transaction.id],
+    );
   }
 
   Future _createDB(Database db, int version) async {
@@ -72,4 +81,3 @@ class DatabaseHelper {
 
   Future<void> insertTransaction(TransactionModel transaction) async {}
 }
->>>>>>> f82a40e88ca5f2c090045d76b5d16e0d0e56569f
