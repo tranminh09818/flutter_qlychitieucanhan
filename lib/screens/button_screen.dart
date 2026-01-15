@@ -4,14 +4,14 @@ import 'package:flutter_qlychitieucanhan/models/transaction.dart';
 import 'package:flutter_qlychitieucanhan/theme.dart';
 import 'package:flutter_qlychitieucanhan/services/database.dart';
 
-class AddScreen extends StatefulWidget {
-  const AddScreen({super.key});
+class ButtonScreen extends StatefulWidget {
+  const ButtonScreen({super.key});
 
   @override
-  State<AddScreen> createState() => _AddScreenState();
+  State<ButtonScreen> createState() => _ButtonScreenState();
 }
 
-class _AddScreenState extends State<AddScreen> { 
+class _ButtonScreenState extends State<ButtonScreen> { 
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
 

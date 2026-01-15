@@ -1,11 +1,11 @@
 // trang để chuyển sang thêm giao dịch( kết nối )
 
 import 'package:flutter/material.dart';
-import 'package:flutter_qlychitieucanhan/screens/add_screen.dart';
+import 'package:flutter_qlychitieucanhan/screens/button_screen.dart';
 import 'package:flutter_qlychitieucanhan/theme.dart';
 import 'package:flutter_qlychitieucanhan/services/database.dart';
 import 'package:flutter_qlychitieucanhan/models/transaction.dart';
-import '../screens/transaction_detail.dart';
+import 'transaction_detail.dart';
 import 'package:flutter_qlychitieucanhan/screens/search_and_summary_screen.dart';
 
 class Home extends StatefulWidget {
@@ -251,11 +251,9 @@ class _HomeState extends State<Home> {
             //hiện thị màn hình thêm giao dịch
             context: context,
             isScrollControlled: true,
-            builder: (_) => const AddScreen(),
+            builder: (_) => const ButtonScreen(),
           );
-
-          // Nếu kết quả trả về là true (đã lưu), tải lại danh sách
-          if (result == true) {
+          if (result == true) { // Nếu kết quả trả về là true (đã lưu), tải lại danh sách
             _loadTransactions();
           }
         },
