@@ -226,10 +226,11 @@ class _HomeState extends State<Home> {
                                   color: Colors.grey,
                                 ),
                                 onPressed: () {
-                                  if (tx.id != null)
+                                  if (tx.id != null) {
                                     _deleteTransaction(
                                       tx.id!,
                                     ); // xóa giao dịch khi nhấn nút
+                                  }
                                 },
                               ),
                             ],
@@ -243,8 +244,8 @@ class _HomeState extends State<Home> {
             ),
       //nút bấm thêm giao dịch
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primaryAccent,
-        child: const Icon(Icons.add),
+        backgroundColor: AppColors.primaryColor,
+        child: const Icon(Icons.add, color: Colors.white),
         onPressed: () async {
           final result = await showModalBottomSheet(
             //hiện thị màn hình thêm giao dịch

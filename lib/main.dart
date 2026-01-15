@@ -2,11 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qlychitieucanhan/screens/home.dart';
 import 'package:flutter_qlychitieucanhan/screens/add_screen.dart';
+import 'package:flutter_qlychitieucanhan/theme.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+        useMaterial3: true,
+      ),
       home: const Home(),
       routes: {
         '/add-transaction': (context) => const AddScreen(), // định nghĩa route để chuyển trang để thêm giao dịch

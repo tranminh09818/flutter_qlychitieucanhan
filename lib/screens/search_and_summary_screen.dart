@@ -1,5 +1,6 @@
 // file này dùng để 
 import 'package:flutter/material.dart';
+import 'package:flutter_qlychitieucanhan/theme.dart';
 
 class SearchAndSummaryScreen extends StatefulWidget {
   final double totalAmount;
@@ -136,9 +137,11 @@ class _SearchAndSummaryScreenState extends State<SearchAndSummaryScreen> {
                               category == 'Tất cả' ? '' : category,
                             );
                           },
-                          selectedColor: Colors.blue.withOpacity(0.2),
+                          selectedColor: AppColors.primaryColor.withOpacity(0.2),
                           labelStyle: TextStyle(
-                            color: isSelected ? Colors.blue : Colors.black87,
+                            color: isSelected
+                                ? AppColors.primaryColor
+                                : Colors.black87,
                             fontWeight: isSelected
                                 ? FontWeight.bold
                                 : FontWeight.normal,
@@ -178,7 +181,7 @@ class _SearchAndSummaryScreenState extends State<SearchAndSummaryScreen> {
                   style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Colors.green,
+                    color: AppColors.expenseColor,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -198,8 +201,8 @@ class _SearchAndSummaryScreenState extends State<SearchAndSummaryScreen> {
                         icon: const Icon(Icons.refresh, size: 20),
                         label: const Text('Làm lại'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.orange[50],
-                          foregroundColor: Colors.orange,
+                          backgroundColor: AppColors.warningColor.withOpacity(0.1),
+                          foregroundColor: AppColors.warningColor,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
                       ),
@@ -218,8 +221,8 @@ class _SearchAndSummaryScreenState extends State<SearchAndSummaryScreen> {
                         icon: const Icon(Icons.delete_outline, size: 20),
                         label: const Text('Xóa tất cả'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red[50],
-                          foregroundColor: Colors.red,
+                          backgroundColor: AppColors.expenseColor.withOpacity(0.1),
+                          foregroundColor: AppColors.expenseColor,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import '../services/database.dart';
+import 'package:flutter_qlychitieucanhan/theme.dart';
 
 class EditTransactionScreen extends StatefulWidget {
   final TransactionModel transaction;
@@ -120,6 +121,9 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
                       });
                     }
                   },
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.primaryColor,
+                  ),
                   child: Text('Chọn ngày'),
                 ),
               ],
@@ -128,6 +132,10 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: _updateTransaction, // Gọi hàm lưu khi bấm
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryAccent,
+                foregroundColor: Colors.white,
+              ),
               child: Text('Cập nhật'),
             ),
           ],

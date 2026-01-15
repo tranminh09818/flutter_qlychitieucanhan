@@ -94,6 +94,7 @@ class _AddScreenState extends State<AddScreen> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                color: AppColors.primaryColor,
               ),
             ),
 
@@ -153,6 +154,9 @@ class _AddScreenState extends State<AddScreen> {
                 ),
                 TextButton(
                   onPressed: _pickDate,
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.primaryColor,
+                  ),
                   child: const Text('Chọn ngày'),
                 ),
               ],
@@ -165,6 +169,7 @@ class _AddScreenState extends State<AddScreen> {
               onPressed: _saveTransaction,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryAccent,
+                foregroundColor: Colors.white,
               ),
               child: const Text('Lưu'),
             ),

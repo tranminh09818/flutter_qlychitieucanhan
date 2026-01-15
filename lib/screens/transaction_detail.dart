@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'edit_transaction_screen.dart';
 import '../services/database.dart';
+import 'package:flutter_qlychitieucanhan/theme.dart';
 
 class TransactionDetailScreen extends StatefulWidget {
   final TransactionModel
@@ -75,10 +76,17 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                   _updateTransaction(updatedTransaction);
                 }
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primaryAccent,
+                foregroundColor: Colors.white,
+              ),
               child: Text('Sửa giao dịch'),
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.expenseColor,
+                foregroundColor: Colors.white,
+              ),
               onPressed: () async {
                 final confirm = await showDialog<bool>(
                   context: context,
@@ -92,7 +100,7 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                       ),
                       TextButton(
                         onPressed: () => Navigator.pop(context, true),
-                        child: Text('Xóa', style: TextStyle(color: Colors.red)),
+                        child: Text('Xóa', style: TextStyle(color: AppColors.expenseColor)),
                       ),
                     ],
                   ),
