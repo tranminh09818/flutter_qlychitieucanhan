@@ -1,4 +1,4 @@
-// Implementation cho web dùng window.localStorage để lưu giao dịch
+// Triển khai cho web sử dụng window.localStorage để lưu giao dịch
 import 'dart:convert';
 // ignore: deprecated_member_use, avoid_web_libraries_in_flutter
 import 'dart:html' as html;
@@ -24,7 +24,7 @@ class DatabaseHelper {
 
   Future<int> insertTransaction(TransactionModel tx) async {
     final list = _readList();
-    // assign id: max existing id + 1 or 1
+    // gán id: id lớn nhất hiện có + 1 hoặc 1
     final maxId = list.map((e) => e['id'] as int? ?? 0).fold<int>(0, (p, n) => n > p ? n : p);
     final id = maxId + 1;
     final map = tx.toMap();
@@ -36,7 +36,7 @@ class DatabaseHelper {
 
   Future<List<TransactionModel>> getAllTransactions() async {
     final list = _readList();
-    // sort by date desc
+    // sắp xếp theo ngày giảm dần
     final parsed = list.map((m) => TransactionModel.fromMap(m)).toList();
     parsed.sort((a, b) => b.date.compareTo(a.date));
     return parsed;
@@ -55,7 +55,7 @@ class DatabaseHelper {
     final index = list.indexWhere((e) => (e['id'] as num?)?.toInt() == tx.id);
     if (index != -1) {
       final map = tx.toMap();
-      map['id'] = tx.id; // ensure id is preserved
+      map['id'] = tx.id; // đảm bảo id được giữ nguyên
       list[index] = map;
       html.window.localStorage[_key] = json.encode(list);
       return 1;

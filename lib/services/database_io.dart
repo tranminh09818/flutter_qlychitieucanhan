@@ -1,4 +1,4 @@
-// Implementation cho IO platforms (Android/iOS/desktop) dùng sqflite
+// Triển khai cho các nền tảng IO (Android/iOS/desktop) sử dụng sqflite
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import '../models/transaction.dart';
@@ -38,13 +38,13 @@ class DatabaseHelper {
     ''');
   }
 
-  // INSERT
+  // THÊM
   Future<int> insertTransaction(TransactionModel tx) async {
     final db = await database;
     return await db.insert('transactions', tx.toMap());
   }
 
-  // GET ALL
+  // LẤY TẤT CẢ
   Future<List<TransactionModel>> getAllTransactions() async {
     final db = await database;
     final result = await db.query('transactions', orderBy: 'date DESC');
@@ -52,13 +52,13 @@ class DatabaseHelper {
     return result.map((e) => TransactionModel.fromMap(e)).toList();
   }
 
-  // DELETE
+  // XÓA
   Future<int> deleteTransaction(int id) async {
     final db = await database;
     return await db.delete('transactions', where: 'id = ?', whereArgs: [id]);
   }
 
-  // UPDATE
+  // CẬP NHẬT
   Future<int> updateTransaction(TransactionModel tx) async {
     final db = await database;
     return await db.update(
