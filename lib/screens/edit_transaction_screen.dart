@@ -102,7 +102,7 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
             SizedBox(height: 16),
             Row(
               children: [
-                Text('Ngày: ${_date.toLocal().toString().split(' ')[0]}'),
+                Text('Ngày: ${_date.day}/${_date.month}/${_date.year}'),
                 TextButton(
                   onPressed: () async {
                     // Mở lịch (DatePicker)

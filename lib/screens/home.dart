@@ -102,13 +102,13 @@ class _HomeState extends State<Home> {
     setState(() {
       _totalAmount = 0;
     });
-
-    // Hàm xóa tất cả giao dịch
-    Future<void> _deleteAllTransactions() async {
-      await DatabaseHelper.instance.deleteAllTransactions();
-      _loadTransactions();
-    }
   } //=====Hiền=====
+
+  // Hàm xóa tất cả giao dịch (Đưa ra ngoài để sửa lỗi phạm vi)
+  Future<void> _deleteAllTransactions() async {
+    await DatabaseHelper.instance.deleteAllTransactions();
+    _loadTransactions();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,11 +171,11 @@ class _HomeState extends State<Home> {
                 // Danh sách giao dịch
                 Expanded(
                   child: ListView.builder(
-                    itemCount: _transactions.length, // số lượng giao dịch
+                    itemCount: _filteredTransactions.length, // Sửa: Dùng danh sách đã lọc
                     itemBuilder: (context, index) {
                       // xây dựng từng mục trong danh sách giao dịch
 
-                      final tx = _transactions[index];
+                      final tx = _filteredTransactions[index]; // Sửa: Dùng danh sách đã lọc
                       return Card(
                         margin: const EdgeInsets.symmetric(
                           horizontal: 10,

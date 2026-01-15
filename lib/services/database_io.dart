@@ -68,4 +68,10 @@ class DatabaseHelper {
       whereArgs: [tx.id],
     );
   }
+
+  // XÓA TẤT CẢ
+  Future<int> deleteAllTransactions() async {
+    final db = await database;
+    return await db.delete('transactions');
+  }
 }

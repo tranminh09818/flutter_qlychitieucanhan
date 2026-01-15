@@ -6,7 +6,7 @@ import 'package:flutter_qlychitieucanhan/screens/add_screen.dart';
 void main() {
   runApp(
     MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, 
       home: const Home(),
       routes: {
         '/add-transaction': (context) => const AddScreen(), // định nghĩa route để chuyển trang để thêm giao dịch

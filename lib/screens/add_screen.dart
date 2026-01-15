@@ -11,7 +11,7 @@ class AddScreen extends StatefulWidget {
   State<AddScreen> createState() => _AddScreenState();
 }
 
-class _AddScreenState extends State<AddScreen> {
+class _AddScreenState extends State<AddScreen> { 
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
 

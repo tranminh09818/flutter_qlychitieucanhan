@@ -1,3 +1,4 @@
+// file này dùng để 
 import 'package:flutter/material.dart';
 
 class SearchAndSummaryScreen extends StatefulWidget {

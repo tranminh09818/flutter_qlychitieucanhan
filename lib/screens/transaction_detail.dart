@@ -50,7 +50,7 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
             ),
             SizedBox(height: 8),
             Text(
-              'Ngày: ${transaction.date.toLocal().toString().split(' ')[0]}',
+              'Ngày: ${transaction.date.day}/${transaction.date.month}/${transaction.date.year}',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             SizedBox(height: 8),
@@ -103,6 +103,7 @@ class _TransactionDetailScreenState extends State<TransactionDetailScreen> {
                       transaction.id!,
                     );
                   }
+                  if (!mounted) return;
                   Navigator.pop(context, 'deleted');
                 }
               },

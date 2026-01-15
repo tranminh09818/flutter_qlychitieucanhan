@@ -62,4 +62,9 @@ class DatabaseHelper {
     }
     return 0;
   }
+
+  Future<int> deleteAllTransactions() async {
+    html.window.localStorage.remove(_key);
+    return 1;
+  }
 }
