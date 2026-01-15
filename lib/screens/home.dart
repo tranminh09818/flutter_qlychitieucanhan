@@ -134,40 +134,6 @@ class _HomeState extends State<Home> {
                   onReset: _resetTransactions,
                   onDeleteAll: _deleteAllTransactions,
                 ),
-                // Hiển thị tổng tiền
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.all(16),
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceColor,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 10,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      const Text(
-                        'Tổng chi tiêu',
-                        style: TextStyle(color: AppColors.subTextColor),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '${_totalAmount.toStringAsFixed(0)} đ',
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.expenseColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 // Danh sách giao dịch
                 Expanded(
                   child: ListView.builder(
