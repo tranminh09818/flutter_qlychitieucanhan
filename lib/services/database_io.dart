@@ -1,5 +1,4 @@
-// IO implementation using sqflite (Android/iOS/desktop)
-// Original database implementation moved here.
+// Implementation cho IO platforms (Android/iOS/desktop) dùng sqflite
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import '../models/transaction.dart';
@@ -57,5 +56,16 @@ class DatabaseHelper {
   Future<int> deleteTransaction(int id) async {
     final db = await database;
     return await db.delete('transactions', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // UPDATE
+  Future<int> updateTransaction(TransactionModel tx) async {
+    final db = await database;
+    return await db.update(
+      'transactions',
+      tx.toMap(),
+      where: 'id = ?',
+      whereArgs: [tx.id],
+    );
   }
 }

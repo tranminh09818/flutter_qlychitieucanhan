@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import '../services/database.dart';
-import '../services/database_service.dart';
 
 class EditTransactionScreen extends StatefulWidget {
   final TransactionModel transaction;
@@ -38,7 +37,7 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
     super.dispose();
   }
 
-  void _updateTransaction() {
+  Future<void> _updateTransaction() async {
     // Tạo đối tượng mới với dữ liệu từ form, nhưng giữ nguyên ID cũ
     final updatedTransaction = TransactionModel(
       id: widget.transaction.id,
@@ -51,9 +50,11 @@ class _EditTransactionScreenState extends State<EditTransactionScreen> {
     );
 
     // Gọi Database để lưu xuống bộ nhớ máy
-    final databaseService = DatabaseService.instance;
+    final databaseHelper = DatabaseHelper.instance;
 
-    databaseService.updateTransaction(updatedTransaction);
+    await databaseHelper.updateTransaction(updatedTransaction);
+
+    if (!mounted) return;
 
     // Đóng màn hình và trả dữ liệu mới về màn hình trước
     Navigator.pop(context, updatedTransaction);

@@ -1,5 +1,6 @@
-// Web implementation using window.localStorage to persist transactions as JSON
+// Implementation cho web dùng window.localStorage để lưu giao dịch
 import 'dart:convert';
+// ignore: deprecated_member_use, avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import '../models/transaction.dart';
 
@@ -47,5 +48,18 @@ class DatabaseHelper {
     list.removeWhere((e) => (e['id'] as num?)?.toInt() == id);
     html.window.localStorage[_key] = json.encode(list);
     return before - list.length;
+  }
+
+  Future<int> updateTransaction(TransactionModel tx) async {
+    final list = _readList();
+    final index = list.indexWhere((e) => (e['id'] as num?)?.toInt() == tx.id);
+    if (index != -1) {
+      final map = tx.toMap();
+      map['id'] = tx.id; // ensure id is preserved
+      list[index] = map;
+      html.window.localStorage[_key] = json.encode(list);
+      return 1;
+    }
+    return 0;
   }
 }
