@@ -36,11 +36,11 @@ class _HomeState extends State<Home> {
     if (mounted) {
       setState(() {
         _transactions = list;
-        _filteredTransactions = list; //Hiền
         // Tính tổng tiền
         _totalAmount = list.fold(0, (sum, item) => sum + item.amount);
         _isLoading = false;
       });
+      _applyFilters();
     }
   }
 
